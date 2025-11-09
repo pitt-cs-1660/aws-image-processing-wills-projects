@@ -6,8 +6,8 @@ on:
       - main
 
 env:
-  AWS_REGION: us-east-1  # update if you are in a different region
-  AWS_LAMBDA_ROLE_ARN: arn:aws:iam::523734927941:role/lambda-image-processing-role  # replace with your ARN
+  AWS_REGION: us-east-1 # update if you are in a different region
+  AWS_LAMBDA_ROLE_ARN: arn:aws:iam::968043243056:role/lambda-image-processing-role # replace with your ARN
 
 jobs:
   deploy-resize:
@@ -77,8 +77,8 @@ jobs:
         uses: aws-actions/aws-lambda-deploy@v1.1.0
         with:
           function-name: resize-lambda
-          package-type: Image  # no zip!
-          image-uri: ${{ steps.resize-build-image.outputs.image }}  # ECR image URI from previous step
+          package-type: Image # no zip!
+          image-uri: ${{ steps.resize-build-image.outputs.image }} # ECR image URI from previous step
           role: ${{ env.AWS_LAMBDA_ROLE_ARN }}
           publish: true
 
@@ -96,8 +96,8 @@ jobs:
       - name: Configure AWS credentials
         uses: aws-actions/configure-aws-credentials@v4
         with:
-          aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
-          aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+          aws-access-key-id: AKIA6CY67UYYI3SAVEU5
+          aws-secret-access-key: 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
           aws-region: ${{ env.AWS_REGION }}
 
       - name: Login to Amazon ECR
@@ -149,11 +149,10 @@ jobs:
         uses: aws-actions/aws-lambda-deploy@v1.1.0
         with:
           function-name: greyscale-lambda
-          package-type: Image  # no zip!
-          image-uri: ${{ steps.greyscale-build-image.outputs.image }}  # ECR image URI from previous step
+          package-type: Image # no zip!
+          image-uri: ${{ steps.greyscale-build-image.outputs.image }} # ECR image URI from previous step
           role: ${{ env.AWS_LAMBDA_ROLE_ARN }}
           publish: true
-
 
   deploy-exif:
     name: Deploy EXIF Lambda
@@ -222,8 +221,7 @@ jobs:
         uses: aws-actions/aws-lambda-deploy@v1.1.0
         with:
           function-name: exif-lambda
-          package-type: Image  # no zip!
-          image-uri: ${{ steps.exif-build-image.outputs.image }}  # ECR image URI from previous step
+          package-type: Image # no zip!
+          image-uri: ${{ steps.exif-build-image.outputs.image }} # ECR image URI from previous step
           role: ${{ env.AWS_LAMBDA_ROLE_ARN }}
           publish: true
-
