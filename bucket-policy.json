@@ -9,7 +9,7 @@
         "s3:PutObject",
         "s3:List*"
       ],
-      "Resource": [
+      "Resource": [ 
         "arn:aws:s3:::wil30-assignment3",
         "arn:aws:s3:::wil30-assignment3/*"
       ]
